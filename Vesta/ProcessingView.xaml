@@ -1,0 +1,40 @@
+﻿<mui:ModernWindow x:Class="Vesta.ProcessingView"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                  mc:Ignorable="d" 
+                  d:DesignHeight="300" d:DesignWidth="300"
+                  Width="400" Height="400"
+                  Title="Vesta - Pdf housekeeping since 2015"
+                  Style="{StaticResource BlankWindow}">
+    <DockPanel>
+        <CheckBox Content="Close this window when done" IsChecked="{Binding CloseWhenDone}" Margin="5" DockPanel.Dock="Bottom" IsEnabled="False"/>
+        <CheckBox Content="Show report on screen when done" IsChecked="{Binding ShowReport}" Margin="5" DockPanel.Dock="Bottom" IsEnabled="False"/>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom">
+                <DockPanel>
+                    <TextBlock Style="{StaticResource SegoeHeading2}" Width="140"
+                               Text="Total files processed  " Margin="5" VerticalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource SegoeHeading1}"
+                               Text="{Binding CompletedShrinkers.Count}" Margin="5" VerticalAlignment="Center"/>
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Style="{StaticResource SegoeHeading2}" Width="140"
+                               Text="Total space saved  " Margin="5" VerticalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource SegoeHeading1}"
+                               Text="{Binding TotalSavedNiceString}" Margin="5" VerticalAlignment="Center"/>
+                </DockPanel>
+                <ProgressBar Value="{Binding OverallProgress, Mode=OneWay}" Height="15" Margin="5"
+                             Minimum="0" Maximum="1"/>
+            </StackPanel>
+            <DataGrid IsReadOnly="True" ItemsSource="{Binding ActiveShrinkers}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="File" Binding="{Binding OriginalName}" Width="110"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding StatusString}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </DockPanel>
+</mui:ModernWindow>
