@@ -19,6 +19,6 @@ Vesta is a small project with a pretty narrow purpose.  It can take a number of 
 
 ------
 
-**Processing window that displays progress to user***
+**Processing window that displays progress to user**
 
 ![](blob/Images/ProcessingWindow.png)
